@@ -3,8 +3,6 @@ import Die from './components/Die';
 import { useState } from 'react';
 
 function App() {
-  const [dice, setDice] = useState()
-  
   const allNewDice = () => {
     const newDice = []
 
@@ -15,46 +13,21 @@ function App() {
     
     return newDice;
   }
-  
-  console.log(allNewDice())
-  
 
+  const [dice, setDice] = useState(allNewDice())
+
+  const diceElements = dice.map(die => <Die value={die} />)
+
+  const rollDice = () => {
+    setDice(allNewDice())
+  }
 
   return (
     <main className="App">
       <div className='grid'>
-        <Die 
-          value="2"
-        />
-        <Die 
-          value="2"
-        />
-        <Die 
-          value="2"
-        />
-        <Die 
-          value="2"
-        />
-        <Die 
-          value="2"
-        />
-        <Die 
-          value="2"
-        />
-        <Die 
-          value="2"
-        />
-        <Die 
-          value="2"
-        />
-        <Die 
-          value="2"
-        />
-        <Die 
-          value="2"
-        />
+        {diceElements}
       </div>
-
+      <button className='roll-dice' onClick={() => rollDice()}>Roll Dice</button>
     </main>
   );
 }
